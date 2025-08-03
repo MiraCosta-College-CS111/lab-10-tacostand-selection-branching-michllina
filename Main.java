@@ -1,7 +1,7 @@
-// PARTNER NAME:
-// PARTNER NAME:
+// PARTNER NAME: Michelle Mendoza
+// PARTNER NAME: N/A
 // CS111 SECTION #:
-// DATE:
+// DATE: resubmitted on 8/2, completed July 9
 
 public class Main
 {
@@ -26,9 +26,10 @@ public class Main
 
 		System.out.println("OPENING UP THE STAND...");
 		System.out.println( TacoStand.getStatus() +"\n\n");
+		//System.out.println();
 
 		Main.printWelcome();
-		System.out.println("\n");
+		System.out.println();
 		
 		Main.takeOrder();
 		//call takeOrder more times if you'd like! (once everything works once though!)
@@ -48,6 +49,7 @@ public class Main
 		UtilityBelt.printCentered(50, "┈┈▏┈▂▂▂▂▂┈▕╮▕┈┈");
 		UtilityBelt.printCentered(50, "┈┈▏┈╲▂▂▂╱┈▕╮▕┈┈");
 		UtilityBelt.printCentered(50, "┈┈╲▂▂▂▂▂▂▂▂╲╱┈┈");
+		System.out.println();
 		//ascii art credit:
 		//https://mizbizbby.tumblr.com/post/12937794639/happy-taco-ascii-art-for-taco-thursday
 	}
@@ -56,19 +58,23 @@ public class Main
 	 * Prints menu and prompts user for input for kind of taco and number in order. If tacos are available,
 	 * will update total funds and confirm order with user, otherwise error message given
 	 */
-	public static void takeOrder() //TODO: upgrade per documentation
+	public static void takeOrder()
 	{
-		//DECLARATION + INITIALIZATION SECTION
+		// DECLARATION + INITIALIZATION SECTION
 		int option, numTacosOrdered;
 
-		//INPUT SECTION
+		// INPUT SECTION
 		TacoStand.printMenu();
 		option = UtilityBelt.readInt("Enter choice> ", 1, 4);
 		numTacosOrdered = UtilityBelt.readInt("Enter number of tacos you want> ", 1, 50);
 
-		//CALCULATION + OUTPUT SECTION
-		TacoStand.updateTotalFunds(option, numTacosOrdered);
-		Main.printConfirmation(numTacosOrdered);
+		// CALCULATION + OUTPUT SECTION
+		if (TacoStand.areTacosAvailable(option, numTacosOrdered)) {
+			TacoStand.updateTotalFunds(option, numTacosOrdered);
+			Main.printConfirmation(numTacosOrdered);
+		} else {
+			System.out.println("We don't have that many tacos, sorry! Try again :(");
+		}
 	}
 
 	/**
@@ -76,9 +82,13 @@ public class Main
 	 * 
 	 * @param numTacos
 	 */
-	public static void printConfirmation(int numTacos) //TODO: upgrade per documentation
-	{
-		System.out.println("Here you go, buen provecho!");
-		System.out.println("🌮");
+	public static void printConfirmation(int count) {
+    System.out.println("Here you go, buen provecho!");
+		for (int i = 0; i < count; i++) {
+        System.out.print("🌮");
+   		 }
+    	System.out.println();
+		System.out.println();
 	}
 }
+		
